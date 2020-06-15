@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace WebApp.Controllers
 {
-    [Authorize(Roles = Roles.Admin)]
+    [Authorize(Roles = Roles.User)]
     public class CarTechnicalConditionsController : Controller
     {
         private readonly CarTechnicalConditionsService _conditionService;
