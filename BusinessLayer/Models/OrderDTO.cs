@@ -19,10 +19,12 @@ namespace BusinessLayer.Models
         public int OwnerId { get; set; }
         [Required]
         public int InspectorId { get; set; }
+        [Required]
+        public bool IsCompleted { get; set; }
 
         public override string ToString()
         {
-            return $"{Id} {Date} {ServiceName} {Price} {CarId} {OwnerId} {InspectorId}";
+            return $"{Id} {Date} {ServiceName} {Price} {CarId} {OwnerId} {InspectorId} {IsCompleted}";
         }
     }
 }

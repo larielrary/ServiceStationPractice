@@ -24,6 +24,11 @@ namespace ServiceStationWebApp.Controllers
             return View(await _orderService.GetItems());
         }
 
+        public async Task<IActionResult> Completed()
+        {
+            return View(await _orderService.GetItems());
+        }
+
         public ActionResult Create()
         {
             return View();
@@ -42,7 +47,8 @@ namespace ServiceStationWebApp.Controllers
                     Price = Convert.ToInt32(collection["Price"]),
                     CarId = Convert.ToInt32(collection["CarId"]),
                     OwnerId = Convert.ToInt32(collection["OwnerId"]),
-                    InspectorId = Convert.ToInt32(collection["InspectorId"])
+                    InspectorId = Convert.ToInt32(collection["InspectorId"]),
+                    IsCompleted = Convert.ToBoolean(collection["IsCompleted"])
                 };
                 await _orderService.Create(item);
                 _logger.LogInformation("Creation was successful.");
@@ -74,7 +80,8 @@ namespace ServiceStationWebApp.Controllers
                     Price = Convert.ToInt32(collection["Price"]),
                     CarId = Convert.ToInt32(collection["CarId"]),
                     OwnerId = Convert.ToInt32(collection["OwnerId"]),
-                    InspectorId = Convert.ToInt32(collection["InspectorId"])
+                    InspectorId = Convert.ToInt32(collection["InspectorId"]),
+                    IsCompleted = Convert.ToBoolean(collection["IsCompleted"])
                 };
                 await _orderService.Update(item);
                 _logger.LogInformation("Editing was successful.");

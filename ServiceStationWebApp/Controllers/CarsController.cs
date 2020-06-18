@@ -56,8 +56,7 @@ namespace ServiceStationWebApp.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            await _carService.GetItem(id);
-            return View();
+            return View(await _carService.GetItem(id));
         }
 
         [HttpPost]

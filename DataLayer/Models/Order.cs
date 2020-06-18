@@ -11,5 +11,6 @@ namespace DataLayer.Models
         public int CarId { get; set; }
         public int OwnerId { get; set; }
         public int InspectorId { get; set; }
+        public bool IsCompleted { get; set; }
     }
 }

@@ -7,22 +7,25 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Date)
+                Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ServiceName)
+                Service
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Price
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CarId)
+                Car id
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OwnerId)
+                Owner id
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.InspectorId)
+                Inspector id
+            </th>
+            <th>
+                Completed
             </th>
             <th></th>
         </tr>
@@ -37,6 +40,7 @@
                 <td> @Html.DisplayFor(modelItem => item.CarId)</td>
                 <td> @Html.DisplayFor(modelItem => item.OwnerId)</td>
                 <td> @Html.DisplayFor(modelItem => item.InspectorId)</td>
+                <td> @Html.DisplayFor(modelItem => item.IsCompleted)</td>
                 @if (SignInManager.IsSignedIn(User) && User.IsInRole("admin"))
                 {
                     <td>
@@ -49,5 +53,8 @@
     </tbody>
 </table>
 <p>
-    <a asp-action="Create">Create</a>
+    <a asp-action="Create">Create</a> | <a asp-action="Completed">Show completed</a>
 </p>
+<center>
+    <img class="" src="https://i.pinimg.com/564x/b7/b8/58/b7b85879316062886c12f5a368b0a085.jpg" style="opacity:0.5" />
+</center>

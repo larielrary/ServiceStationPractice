@@ -7,7 +7,7 @@ namespace ServiceStationWebApp
     public class IdentityInitializer
     {
         private const string _email = "mashaprotskaya@gmail.com";
-        private const string _password = "12345password";
+        private const string _password = "123456Aa_";
         private const string _surname = "Protskaya";
         private const string _firstName = "Masha";
         public static async Task InitializeAsync(UserManager<Employee> userManager, RoleManager<IdentityRole> roleManager)
