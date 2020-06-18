@@ -1,16 +1,15 @@
 ﻿using DataLayer.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer
 {
-    public class ServiceStationContext : IdentityDbContext<IdentityUser>
+    public class ServiceStationContext : IdentityDbContext<Employee>
     {
-        public DbSet<CarDTO> Cars { get; set; }
-        public DbSet<CarTechnicalConditionDTO> CarTechnicalConditions { get; set; }
-        public DbSet<InspectorDTO> Inspectors { get; set; }
-        public DbSet<OwnerDTO> Owners { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Inspector> Inspectors { get; set; }
+        public DbSet<Owner> Owners { get; set; }
 
         public ServiceStationContext(DbContextOptions<ServiceStationContext> options)
             : base(options)

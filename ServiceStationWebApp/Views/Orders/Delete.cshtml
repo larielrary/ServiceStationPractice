@@ -1,0 +1,50 @@
+﻿@model BusinessLayer.Models.OrderDTO
+
+<h3>Are you sure?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            <label asp-for="Date"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Date
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="ServiceName"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.ServiceName
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Price"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Price
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="CarId"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.CarId
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="OwnerId"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.OwnerId
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="InspectorId"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.InspectorId
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteById">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

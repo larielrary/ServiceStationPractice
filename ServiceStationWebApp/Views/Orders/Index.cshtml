@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BusinessLayer.Models.OrderDTO>
+@inject SignInManager<DataLayer.Models.Employee> SignInManager
+@inject UserManager<DataLayer.Models.Employee> UserManager
+@using Microsoft.AspNetCore.Identity
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OwnerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InspectorId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.Date)</td>
+                <td> @Html.DisplayFor(modelItem => item.ServiceName)</td>
+                <td> @Html.DisplayFor(modelItem => item.Price)</td>
+                <td> @Html.DisplayFor(modelItem => item.CarId)</td>
+                <td> @Html.DisplayFor(modelItem => item.OwnerId)</td>
+                <td> @Html.DisplayFor(modelItem => item.InspectorId)</td>
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("admin"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+<p>
+    <a asp-action="Create">Create</a>
+</p>

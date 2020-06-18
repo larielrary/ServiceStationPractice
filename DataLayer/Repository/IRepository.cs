@@ -1,5 +1,4 @@
-﻿using DataLayer.Entity;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DataLayer.Repository
