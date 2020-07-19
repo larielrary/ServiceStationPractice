@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Models;
 using BusinessLayer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ServiceStationWebApp.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly OrdersService _orderService;
@@ -48,7 +50,7 @@ namespace ServiceStationWebApp.Controllers
                     CarId = Convert.ToInt32(collection["CarId"]),
                     OwnerId = Convert.ToInt32(collection["OwnerId"]),
                     InspectorId = Convert.ToInt32(collection["InspectorId"]),
-                    IsCompleted = Convert.ToBoolean(collection["IsCompleted"])
+                    IsCompleted = false
                 };
                 await _orderService.Create(item);
                 _logger.LogInformation("Creation was successful.");
@@ -80,8 +82,7 @@ namespace ServiceStationWebApp.Controllers
                     Price = Convert.ToInt32(collection["Price"]),
                     CarId = Convert.ToInt32(collection["CarId"]),
                     OwnerId = Convert.ToInt32(collection["OwnerId"]),
-                    InspectorId = Convert.ToInt32(collection["InspectorId"]),
-                    IsCompleted = Convert.ToBoolean(collection["IsCompleted"])
+                    InspectorId = Convert.ToInt32(collection["InspectorId"])
                 };
                 await _orderService.Update(item);
                 _logger.LogInformation("Editing was successful.");
@@ -114,6 +115,26 @@ namespace ServiceStationWebApp.Controllers
                 _logger.LogError("Delete failed.", ex);
                 return View();
             }
+        }
+
+        public async Task<IActionResult> Detail(int id)
+        {
+            return View(await _orderService.GetItem(id));
+        }
+
+        public async Task<IActionResult> Executing(int id)
+        {
+            var item = await _orderService.GetItem(id);
+            if (item.IsCompleted == false)
+            {
+                item.IsCompleted = true;
+            }
+            else
+            {
+                item.IsCompleted = false;
+            }
+            await _orderService.Update(item);
+            return RedirectToAction(nameof(Index)); 
         }
     }
 }

@@ -13,13 +13,13 @@ namespace BusinessLayer.Models
         [Required]
         public double EngineCapacity { get; set; }
         [Required]
-        public string BodyNubmer { get; set; }
+        public string BodyNumber { get; set; }
         [Required]
         public int YearOfProduction { get; set; }
 
         public override string ToString()
         {
-            return $"{Id} {CarNumber} {CarModel} {EngineCapacity} {BodyNubmer} {YearOfProduction}";
+            return $"{Id} {CarNumber} {CarModel} {EngineCapacity} {BodyNumber} {YearOfProduction}";
         }
     }
 }

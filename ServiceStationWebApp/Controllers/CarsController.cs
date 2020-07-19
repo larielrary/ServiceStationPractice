@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Models;
 using BusinessLayer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ServiceStationWebApp.Controllers
 {
+    [Authorize]
     public class CarsController : Controller
     {
         private readonly CarsService _carService;
@@ -40,7 +42,7 @@ namespace ServiceStationWebApp.Controllers
                     CarNumber = collection["CarNumber"],
                     CarModel = collection["CarModel"],
                     EngineCapacity = Convert.ToDouble(collection["EngineCapacity"]),
-                    BodyNubmer = collection["BodyNumber"],
+                    BodyNumber = collection["BodyNumber"],
                     YearOfProduction = Convert.ToInt32(collection["YearOfProduction"])
                 };
                 await _carService.Create(car);
@@ -71,7 +73,7 @@ namespace ServiceStationWebApp.Controllers
                     CarNumber = collection["CarNumber"],
                     CarModel = collection["CarModel"],
                     EngineCapacity = Convert.ToDouble(collection["EngineCapacity"]),
-                    BodyNubmer = collection["BodyNumber"],
+                    BodyNumber = collection["BodyNumber"],
                     YearOfProduction = Convert.ToInt32(collection["YearOfProduction"]),
                 };
                 await _carService.Update(car);
@@ -105,6 +107,11 @@ namespace ServiceStationWebApp.Controllers
                 _logger.LogError("Delete failed.", ex);
                 return View();
             }
+        }
+
+        public async Task<IActionResult> Detail(int id)
+        {
+            return View(await _carService.GetItem(id));
         }
     }
 }

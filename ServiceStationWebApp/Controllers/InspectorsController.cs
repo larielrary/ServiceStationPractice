@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Models;
 using BusinessLayer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ServiceStationWebApp.Controllers
 {
+    [Authorize]
     public class InspectorsController : Controller
     {
         private readonly InspectorsService _inspectorService;
@@ -105,6 +107,11 @@ namespace ServiceStationWebApp.Controllers
                 _logger.LogError("Delete failed.", ex);
                 return View();
             }
+        }
+
+        public async Task<IActionResult> Detail(int id)
+        {
+            return View(await _inspectorService.GetItem(id));
         }
     }
 }

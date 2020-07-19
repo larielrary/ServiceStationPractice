@@ -7,6 +7,9 @@
     <thead>
         <tr>
             <th>
+                ID
+            </th>
+            <th>
                 Car number
             </th>
             <th>
@@ -16,7 +19,7 @@
                 Engine capacity
             </th>
             <th>
-                Body nubmer
+                Body number
             </th>
             <th>
                 Year of production
@@ -27,26 +30,36 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td> @Html.DisplayFor(modelItem => item.Id)</td>
                 <td> @Html.DisplayFor(modelItem => item.CarNumber)</td>
                 <td> @Html.DisplayFor(modelItem => item.CarModel)</td>
                 <td> @Html.DisplayFor(modelItem => item.EngineCapacity)</td>
-                <td> @Html.DisplayFor(modelItem => item.BodyNubmer)</td>
+                <td> @Html.DisplayFor(modelItem => item.BodyNumber)</td>
                 <td> @Html.DisplayFor(modelItem => item.YearOfProduction)</td>
 
-                @if (SignInManager.IsSignedIn(User) && User.IsInRole("admin"))
-                {
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                }
+                <td>
+                    <a class="list-group-item list-group-item-action list-group-item-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+                <td>
+                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("admin"))
+                    {
+                        <a class="list-group-item list-group-item-action list-group-item-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+                </td>
+                <td>
+                    <a class="list-group-item list-group-item-action list-group-item-info" asp-action="Detail" asp-route-id="@item.Id">Detail</a>
+                </td>
             </tr>
         }
     </tbody>
+    <tfoot>
+        <tr>
+            <td>
+                <a class="list-group-item list-group-item-action list-group-item-success" asp-action="Create">Create</a>
+            </td>
+        </tr>
+    </tfoot>
 </table>
-<p>
-    <a asp-action="Create">Create</a>
-</p>
 <center>
     <img class="" src="https://i.pinimg.com/564x/b7/b8/58/b7b85879316062886c12f5a368b0a085.jpg" style="opacity:0.5" />
 </center>
